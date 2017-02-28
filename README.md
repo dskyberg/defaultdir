@@ -21,19 +21,19 @@ func getDefaultDir() string {
    base := "base_dir"
 
 	dir, err := defaultdir.New().
-		Env(envKey). // Use value of MY_DIR as the directory
-		Base(base).  // Set "base_dir" as the sub folder to look for
-		Env(envKey). // Now look for "<value of MY_DIR>/base_dir"
-		Cwd().       // Use $CWD/base_dir
-		Bin().       // Use <app exe dir>/base_dir
-      ClearBase(). // Unset "base_dir"
-      Cwd().       // If nothing else if found, use $CWD
+		Env(envKey).  // Use value of MY_DIR as the directory
+		Base(base).   // Set "base_dir" as the sub folder to look for
+		Env(envKey).  // Now look for "<value of MY_DIR>/base_dir"
+		Cwd().        // Use $CWD/base_dir
+		Bin().        // Use <app exe dir>/base_dir
+ 		ClearBase().  // Unset "base_dir"
+		Cwd().        // If nothing else if found, use $CWD
 		Dir()
    
    // There should be no error, and dir should be set
 	if err == nil && dir != nil {
 		return *dir
 	}
-   
+
 }
 ```
